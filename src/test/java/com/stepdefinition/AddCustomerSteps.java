@@ -24,7 +24,7 @@ public class AddCustomerSteps {
 	@Given("click on add customer button")
 	public void click_on_add_customer_button() {
 	 driver.get("http://demo.guru99.com/telecom/");
-	 driver.findElement(By.xpath("(//a[text()='Add Customer'])[1]")).click();
+	 driver.findElement(By.xpath("(//a[text()='Add Customer'])[2]")).click();
 	}
 
 	@When("user enters all the fields with valid data")
