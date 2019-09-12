@@ -36,6 +36,7 @@ public class AddCustomerSteps {
 	     driver.findElement(By.name("addr")).sendKeys("chennai");
 	     driver.findElement(By.id("telephoneno")).sendKeys("1234567890");
 	}
+	
 	@When("user enters all the field with valid data.")
 	public void user_enters_all_the_field_with_valid_data(DataTable CusDetails) {
 		
@@ -48,6 +49,7 @@ public class AddCustomerSteps {
 	     driver.findElement(By.name("addr")).sendKeys(data.get(3));
 	     driver.findElement(By.id("telephoneno")).sendKeys(data.get(4));
 	}
+	
 	@When("user enter all the field with valid data.")
 	public void user_enter_all_the_field_with_valid_data(DataTable CustomerD) {
 	
@@ -58,11 +60,22 @@ public class AddCustomerSteps {
 	     driver.findElement(By.id("lname")).sendKeys(data.get("lname"));
 	     driver.findElement(By.id("email")).sendKeys(data.get("email"));
 	     driver.findElement(By.name("addr")).sendKeys(data.get("address"));
-	     driver.findElement(By.id("telephoneno")).sendKeys(data.get("phnno"));
-		
+	     driver.findElement(By.id("telephoneno")).sendKeys(data.get("phnno"));	
 	}
+	
 
+@When("user enterss all the field with valid data {string},{string},{string},{string},{string}")
+public void user_enterss_all_the_field_with_valid_data(String fname, String lname, String email, String add, String phn) {
+	
+	driver.findElement(By.xpath("//label[@for='done']")).click();
+    driver.findElement(By.id("fname")).sendKeys(fname);
+    driver.findElement(By.id("lname")).sendKeys(lname);
+    driver.findElement(By.id("email")).sendKeys(email);
+    driver.findElement(By.name("addr")).sendKeys(add);
+    driver.findElement(By.id("telephoneno")).sendKeys(phn);
 
+}
+	
 	@When("clicks on submit button")
 	public void clicks_on_submit_button() {
     
