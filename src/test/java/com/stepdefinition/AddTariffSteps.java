@@ -1,32 +1,54 @@
 package com.stepdefinition;
 
+import java.awt.Button;
 import java.util.List;
 import java.util.Map;
 
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+
+import com.objectrepository.AddTariffPage;
+import com.objectrepository.HomePage;
+import com.resources.FunctionalLibrary;
+
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import io.cucumber.datatable.DataTable;
 
 
-public class AddTariffSteps {
-	static WebDriver driver;
+public class AddTariffSteps extends FunctionalLibrary {
+	/*static WebDriver driver;
 
 	@Given("User should be in telecom home page")
 	public void user_should_be_in_telecom_home_page() {
 		System.setProperty("webdriver.chrome.driver",
 				"C:\\Users\\subbian\\eclipse-workspace\\Arch\\Cucumber_RClass\\driver\\chromedriver.exe");
 		driver = new ChromeDriver();
-	}
+	}*/
 
 	@Given("click on add tariff button")
 	public void click_on_add_tariff_button() {
-		driver.get("http://demo.guru99.com/telecom/");
-		driver.findElement(By.xpath("//a[text()='Add Tariff Plan']")).click();
+		
+		HomePage page=new HomePage();
+		button(page.getAddTariffPlan());
+		/*driver.get("http://demo.guru99.com/telecom/");
+		driver.findElement(By.xpath("//a[text()='Add Tariff Plan']")).click();*/
+	}
+	@When("user enter all the field with valid data")
+	public void user_enter_all_the_field_with_valid_data() {
+		
+		AddTariffPage page=new AddTariffPage();
+		text(page.getMonthlyRent(),"500");
+		text(page.getLocalMin(), "60");
+		text(page.getInterMin(), "30");
+		text(page.getSmsPack(),"100");
+		text(page.getLocCharges(), "2");
+		text(page.getInterCharges(), "5");
+		text(page.getSmsCharges(), "1");
 	}
 
 	@When("user enters all the fields with valid datas")
@@ -40,6 +62,7 @@ public class AddTariffSteps {
 		driver.findElement(By.id("minutes_charges")).sendKeys(data.get(1).get(4));
 		driver.findElement(By.name("inter_charges")).sendKeys(data.get(1).get(5));
 		driver.findElement(By.id("sms_charges")).sendKeys(data.get(1).get(6));
+	
 	}
 	
 	@When("user enter all the fields with valid datas")
@@ -56,7 +79,11 @@ public class AddTariffSteps {
 
 	@When("click on submit button")
 	public void click_on_submit_button() {
-		driver.findElement(By.xpath("//input[@value='submit']")).click();
+		
+		AddTariffPage page=new AddTariffPage();
+		button(page.getSubmit_1());
+		
+		/*driver.findElement(By.xpath("//input[@value='submit']")).click();*/
 	}
 
 	@Then("tariff id should be generated and displayed")

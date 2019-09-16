@@ -8,33 +8,51 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
+import com.objectrepository.AddCustomerPage;
+import com.objectrepository.HomePage;
+import com.resources.FunctionalLibrary;
+
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import io.cucumber.datatable.DataTable;
 
-public class AddCustomerSteps {
-	static WebDriver driver;
-	@Given("User is in telecom home page")
+public class AddCustomerSteps extends FunctionalLibrary{
+	/*static WebDriver driver;
+	 @Given("User is in telecom home page")
 	public void user_is_in_telecom_home_page() {
       System.setProperty("webdriver.chrome.driver","C:\\Users\\subbian\\eclipse-workspace\\Arch\\Cucumber_RClass\\driver\\chromedriver.exe");
       driver=new ChromeDriver();
-	}
+	}*/
 
 	@Given("click on add customer button")
 	public void click_on_add_customer_button() {
-	 driver.get("http://demo.guru99.com/telecom/");
-	 driver.findElement(By.xpath("(//a[text()='Add Customer'])[2]")).click();
+		
+		HomePage page=new HomePage();
+		button(page.getAddCustomer());
+		
+		
+	 /*driver.get("http://demo.guru99.com/telecom/");
+	 driver.findElement(By.xpath("(//a[text()='Add Customer'])[2]")).click();*/
 	}
 
 	@When("user enters all the fields with valid data")
 	public void user_enters_all_the_fields_with_valid_data() {
-		 driver.findElement(By.xpath("//label[@for='done']")).click();
+		
+		AddCustomerPage page=new AddCustomerPage();
+		button(page.getDone());
+		text(page.getFirstName(), "archana");
+		text(page.getLastName(), "subbian");
+		text(page.getEmailId(), "archan@gmail.com");
+		text(page.getAddress(), "chennai");
+		text(page.getPhno(), "9556432178");
+		
+		 /*driver.findElement(By.xpath("//label[@for='done']")).click();
 	     driver.findElement(By.id("fname")).sendKeys("archana");
 	     driver.findElement(By.id("lname")).sendKeys("subbian");
 	     driver.findElement(By.id("email")).sendKeys("archana@gmail.com");
 	     driver.findElement(By.name("addr")).sendKeys("chennai");
-	     driver.findElement(By.id("telephoneno")).sendKeys("1234567890");
+	     driver.findElement(By.id("telephoneno")).sendKeys("1234567890");*/
 	}
 	
 	@When("user enters all the field with valid data.")
@@ -78,8 +96,11 @@ public void user_enterss_all_the_field_with_valid_data(String fname, String lnam
 	
 	@When("clicks on submit button")
 	public void clicks_on_submit_button() {
+		
+		AddCustomerPage page=new AddCustomerPage();
+		button(page.getSubmit());
     
-     driver.findElement(By.xpath("//input[@value='Submit']")).click();
+     /*driver.findElement(By.xpath("//input[@value='Submit']")).click();*/
 	}
 
 	@Then("customer id should be generated and displayed")

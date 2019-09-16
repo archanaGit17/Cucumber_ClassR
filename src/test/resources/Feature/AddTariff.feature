@@ -1,8 +1,18 @@
 Feature: To add tariff details
 
-  Scenario: 
-    Given User should be in telecom home page
+
+Background:
+#Given User should be in telecom home page
     And click on add tariff button
+      
+@sanity
+  Scenario:
+  When user enter all the field with valid data
+    And clicks on submit button
+    Then customer id should be generated and displayed
+
+  Scenario: 
+ 
     When user enters all the fields with valid datas
       |  500 |  60 | 30 | 100 | 2 | 5 | 1 |
       | 1000 | 120 | 60 | 300 | 2 | 6 | 1 |
@@ -11,8 +21,7 @@ Feature: To add tariff details
     Then tariff id should be generated and displayed
 
   Scenario: 
-    Given User should be in telecom home page
-    And click on add tariff button
+  
     When user enter all the fields with valid datas
       | Pack | Locmin | Intermin | Sms | Locchrg | Interchrg | Smschrg |
       |  500 |     60 |       30 | 100 |       2 |         5 |       1 |
